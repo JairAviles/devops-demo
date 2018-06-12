@@ -1,0 +1,14 @@
+version: 2
+jobs :
+  build:
+    working_directory: ~/tmp
+    docker:
+        - image: circleci/node:8
+    steps:
+        - setup_remote_docker
+        - checkout
+        - run: docker build -t platzi .
+
+test:
+    override:
+        - run: docker run plaati npm test
