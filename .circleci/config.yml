@@ -7,8 +7,5 @@ jobs :
     steps:
         - setup_remote_docker
         - checkout
-        - run: docker build -t platzi .  
-
-test:
-    override:
+        - run: docker build -t platzi .
         - run: docker run platzi npm test
