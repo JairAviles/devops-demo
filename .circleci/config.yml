@@ -9,3 +9,7 @@ jobs :
         - checkout
         - run: docker build -t platzi .
         - run: docker run platzi npm test
+        - run: sh deployments/qa.sh
+
+    branches:
+         only: /feature_.*/
