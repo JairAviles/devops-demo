@@ -1,4 +1,4 @@
-{ 
+{
 "variables": {
     "build_number": "{{env `CIRCLE_BUILD_NUM`}}"
 },
@@ -10,7 +10,7 @@
         "image": "coreos-stable",
         "region": "sfo2",
         "size": "512mb",
-        "snapshot_name": "platzi-demo-03-{{user `build_number`}}",        
+        "snapshot_name": "platzi-demo-03-{{user `build_number`}}",
         "snapshot_regions": ["sfo2"],
         "ssh_username": "core"
     }
