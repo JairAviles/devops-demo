@@ -1,0 +1,30 @@
+{ 
+"variables": {
+    "build_number": "{{env `CIRCLE_BUILD_NUM`}}"
+},
+"builders": [
+    {
+        "type": "digitalocean",
+        "api_token": "1f03c157e5ef5ab09d24bd34e0ac27836f7d96e73554c00e704bd97dfef123cb",
+        "droplet_name": "platzi-demo-03",
+        "image": "coreos-stable",
+        "region": "sfo2",
+        "size": "512mb",
+        "snapshot_name": "platzi-demo-03-{{user `build_number`}}",        
+        "snapshot_regions": ["sfo2"],
+        "ssh_username": "core"
+    }
+],
+"provisioners": [
+    {
+        "type": "shell",
+        "inline": [
+            "git clone https://github.com/JairAviles/devops-demo.git",
+            "cd devops-demo",
+            "docker build -t platzi .",
+            "docker run -d -p 3000:3000 platzi"
+        ]
+    }
+  ]
+}
+
