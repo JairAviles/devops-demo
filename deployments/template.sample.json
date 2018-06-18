@@ -1,12 +1,16 @@
-{ "builders": [
+{ 
+"variables": {
+    "build_number": "{{env `CIRCLE_BUILD_NUM`}}"
+},
+"builders": [
     {
         "type": "digitalocean",
-        "api_token": "YOUR_DIGITAL_OCEAN_API_TOKEN_GOES_HERE",
+        "api_token": "YOUR_API_TOKEN_GOES_HERES",
         "droplet_name": "platzi-demo-03",
         "image": "coreos-stable",
         "region": "sfo2",
         "size": "512mb",
-        "snapshot_name": "platzi-demo-03",
+        "snapshot_name": "platzi-demo-03-{{user `build_number`}}",        
         "snapshot_regions": ["sfo2"],
         "ssh_username": "core"
     }

@@ -1,4 +1,4 @@
 node_modules
 infra/.terraform/
 
-template.json
+deployments/template.json
