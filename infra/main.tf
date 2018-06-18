@@ -13,6 +13,7 @@ resource "digitalocean_loadbalancer" "devops-demo" {
   healthcheck {
     port = 3000
     protocol = "http"
+    path  = "/"
   }
 
   droplet_tag = "${digitalocean_tag.devops-demo.name}"
