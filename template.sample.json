@@ -1,0 +1,26 @@
+{ "builders": [
+    {
+        "type": "digitalocean",
+        "api_token": "YOUR_DIGITAL_OCEAN_API_TOKEN_GOES_HERE",
+        "droplet_name": "platzi-demo-03",
+        "image": "coreos-stable",
+        "region": "sfo2",
+        "size": "512mb",
+        "snapshot_name": "platzi-demo-03",
+        "snapshot_regions": ["sfo2"],
+        "ssh_username": "core"
+    }
+],
+"provisioners": [
+    {
+        "type": "shell",
+        "inline": [
+            "git clone https://github.com/JairAviles/devops-demo.git",
+            "cd devops-demo",
+            "docker build -t platzi .",
+            "docker run -d -p 3000:3000 platzi"
+        ]
+    }
+  ]
+}
+
