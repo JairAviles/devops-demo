@@ -1,7 +1,4 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
+version: 2
 jobs:
   build:
     docker:
@@ -25,11 +22,11 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: yarn test
+      - run: docker run platzi npm test
   deploy-qa:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: circleci/node:8
     working_directory: ~/repo
     steps:
       - checkout
@@ -48,7 +45,7 @@ jobs:
   deploy-prod:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: circleci/node:8
     working_directory: ~/repo
     steps:
       - checkout
@@ -63,11 +60,8 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-
-
 workflows:
-  version:2
+  version: 2
   central_flow:
       jobs:
         - build
